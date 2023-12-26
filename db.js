@@ -33,7 +33,7 @@ const connectDB= ()=>{
                     return;
                 }
                 console.log("Connected to DB");
-                console.log(recordset);
+                // console.log(recordset);
                 sql.close();
             });
         }
