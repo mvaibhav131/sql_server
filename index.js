@@ -4,7 +4,7 @@ const cors= require("cors");
 const connection = require("./db");
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
-
+const meterRoutes = require('./routes/meterRoutes');
 // setup the server
 
 const app = express();
@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.get("/",(req,res) => {
     res.send("Hellow Welcome to Express!");
 });
+app.use("/api",meterRoutes);
 
 // setup config path
 // dotenv.config({path:"config/config.env"}); // for env but path is inside the config env
@@ -30,9 +31,9 @@ dotenv.config(); // for single env files in env path
 app.listen(process.env.PORT,async() => {
     try{
       await connection();
+      console.log(`Server is started ${process.env.PORT}`);
     }
     catch(e){
     console.log("error",e);
     }
-     console.log(`Server is started ${process.env.PORT}`);
 });
